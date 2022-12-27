@@ -6,6 +6,6 @@ const { validateBody } = require("../../middlewares");
 
 const router = express.Router();
 
-router.post("./register", validateBody(schemasUser.registerSchema), ctrlWrapper(ctrl.register))
+router.post("/register", validateBody(schemasUser.registerSchema), ctrlWrapper(ctrl.register))
 
 module.exports = router;
