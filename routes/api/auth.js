@@ -2,7 +2,7 @@ const express = require("express");
 const ctrl = require("../../controllers/auth");
 const { ctrlWrapper } = require("../../helpers");
 const { schemasUser } = require("../../models");
-const { validateBody, authenticate } = require("../../middlewares");
+const { validateBody, authenticate, upload } = require("../../middlewares");
 
 
 const router = express.Router();
@@ -11,5 +11,5 @@ router.post("/register", validateBody(schemasUser.registerSchema), ctrlWrapper(c
 router.post("/login", validateBody(schemasUser.loginSchema), ctrlWrapper(ctrl.login))
 router.get("/current", authenticate, ctrlWrapper(ctrl.getCurrent))
 router.post("/logout", authenticate, ctrlWrapper(ctrl.logout))
-
+router.patch("/avatars", authenticate, upload.single("avatars"), ctrlWrapper(ctrl.uploadAvatar))
 module.exports = router;
