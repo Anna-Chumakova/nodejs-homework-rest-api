@@ -7,10 +7,10 @@ const verify = async (req, res) => {
 
     if (!user) {
         throw HttpError(404, "Not found");
-    }
+    } 
     await User.findByIdAndUpdate(user._id, { verify: true, verificationToken: ""});
     res.json({
         message: "Email verify success",
     })
 } 
-module.exports = verify;
+module.exports = verify;   
